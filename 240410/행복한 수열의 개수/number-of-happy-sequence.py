@@ -8,10 +8,10 @@ def check_line(line):
     for i in range (1,n):
         if line[i] == line[i-1]:
             cont += 1
-            if cont == m:
-                return True
         else :
             cont = 1
+        if cont == m:
+            return True
     return False
 
 answer = 0
