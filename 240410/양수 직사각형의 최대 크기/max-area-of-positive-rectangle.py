@@ -9,5 +9,7 @@ for i in range (n):
                 for y in range (j,m):
                     if (grid[x][y]) > 0:
                         cnt +=1
+                    else :
+                        break
             answer = max(answer,cnt)
 print(answer)
