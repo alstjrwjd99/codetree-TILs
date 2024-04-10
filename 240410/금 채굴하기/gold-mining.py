@@ -40,5 +40,6 @@ def total(x,y,k):
 answer = 0
 for i in range (n):
     for j in range (n):
-        answer = max(answer,total(i,j,2))
+        for k in range (20):
+            answer = max(answer,total(i,j,k))
 print(answer)
