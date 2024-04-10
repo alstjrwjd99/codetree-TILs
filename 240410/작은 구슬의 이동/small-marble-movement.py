@@ -1,23 +1,32 @@
-n,t = map(int,input().split())
-r,c,d = input().split()
-r,c = int(r),int(c)
-dxs, dys = [0, 1, -1, 0], [1, 0, 0, -1]
+# 변수 선언 및 입력
+n, t = tuple(map(int, input().split()))
+x, y, c_dir = tuple(input().split())
 
-direct = {
+# 각 알파벳 별 방향 번호를 설정합니다.
+mapper = {
     'R': 0,
     'D': 1,
     'U': 2,
     'L': 3
-    }
+}
+x, y, move_dir = int(x) - 1, int(y) - 1, mapper[c_dir]
 
-def in_range(x,y):
-    return 0<x<n and 0<y<n
-i = direct[d]
-for _ in range (t):
-    nx = r + dxs[i]
-    ny = c + dys[i]
-    if not in_range(nx,ny):
-        i = 3-i
-        continue
-    r,c = r +dxs[i], c+dys[i]
-print(r,c)
+dxs = [0, 1, -1,  0]
+dys = [1, 0,  0, -1]
+
+
+def in_range(x, y):
+    return 0 <= x and x < n and 0 <= y and y < n
+
+
+# simulation 진행
+for _ in range(t):
+    nx, ny = x + dxs[move_dir], y + dys[move_dir]
+    # 범위 안에 들어온다면 그대로 진행합니다.
+    if in_range(nx, ny):
+        x, y = nx, ny
+    # 벽에 부딪힌다면, 방향을 바꿔줍니다.
+    else:
+        move_dir = 3 - move_dir
+
+print(x + 1, y + 1)
