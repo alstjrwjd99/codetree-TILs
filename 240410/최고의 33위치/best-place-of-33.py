@@ -1,4 +1,5 @@
 n = int(input())
+
 grid = []
 for _ in range (n):
     grid.append(list(map(int,input().split())))
@@ -10,7 +11,7 @@ def count_coin(x,y):
     coins = 0
     for i in range (3):
         for j in range (3):
-            if grid[x+i][j] == 1:
+            if grid[x+i][y+j] == 1:
                 coins += 1
     return coins
 
