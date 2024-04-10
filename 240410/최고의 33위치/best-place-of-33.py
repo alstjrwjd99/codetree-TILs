@@ -18,5 +18,5 @@ answer = 0
 for i in range (n):
     for j in range (n):
         if in_range(i,j):
-            answer += count_coin(i,j)
+            answer = max(answer,count_coin(i,j))
 print(answer)
