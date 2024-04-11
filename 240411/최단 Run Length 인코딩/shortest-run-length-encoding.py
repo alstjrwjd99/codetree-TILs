@@ -1,4 +1,5 @@
 A = input()
+
 def encolen(A):
     en = A[0]
     cnt = 0
@@ -9,7 +10,7 @@ def encolen(A):
         else :
             cnt += 1
     return en + str(cnt)
-answer = 0
+answer = 1000000000
 for i in range (len(A)):
     b = A[i:] + A[:i]
     answer = min(len(encolen(b)),answer)
