@@ -34,9 +34,10 @@ def fall(grid):
             if start and grid[i][j] != 0 :
                 tmp.append(grid[i][j])
                 grid[i][j] = 0
+
         for idx, a in enumerate (tmp):
-            grid[start][j] = a
-                    
+            grid[start-idx][j] = a
+              
 for coor in (explosion(x,y)):
     grid[coor[0]][coor[1]] = 0
 
