@@ -1,47 +1,48 @@
+# 변수 선언 및 입력:
+
 n = int(input())
-grid = []
-for _ in range (n):
-    grid.append(list(map(int,input().split())))
-x,y = map(int,input().split())
-x -= 1
-y -= 1
-dx,dy = [-1,1,0,0],[0,0,1,-1]
-def in_range(x,y):
-    return 0<=x<n and 0<=y<n
+grid = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
+next_grid = [
+    [0 for _ in range(n)]
+    for _ in range(n)
+]
 
-def explosion(x,y):
-    ret = [(x,y)]
-    boundry = grid[x][y]
-    for i in range (4):
-        nx = x + dx[i]
-        ny = y + dy[i]
-        for _ in range (boundry-1):
-            if in_range(nx,ny):
-                ret.append((nx,ny))
-                nx += dx[i]
-                ny += dy[i]
-            else :
-                break
-    return ret
 
-def fall(grid):
-    for j in range (n):
-        tmp = []
-        start = 0
-        for i in range (n-1,-1,-1):
-            if grid[i][j] == 0:
-                start = i
-            if start and grid[i][j] != 0 :
-                tmp.append(grid[i][j])
+def in_bomb_range(x, y, center_x, center_y, bomb_range):
+    return (x == center_x or y == center_y) and \
+           abs(x - center_x) + abs(y - center_y) < bomb_range
+
+
+def bomb(center_x, center_y):
+    bomb_range = grid[center_x][center_y]
+    
+    # Step1. 폭탄이 터질 위치는 0으로 채워줍니다.
+    for i in range(n):
+        for j in range(n):
+            if in_bomb_range(i, j, center_x, center_y, bomb_range):
                 grid[i][j] = 0
+	
+    # Step2. 폭탄이 터진 이후의 결과를 next_grid에 저장합니다.
+    for j in range(n):
+        next_row = n - 1
+        for i in range(n - 1, -1, -1):
+            if grid[i][j]:
+                next_grid[next_row][j] = grid[i][j]
+                next_row -= 1
+                
+    # Step3. grid로 다시 값을 옮겨줍니다.
+    for i in range(n):
+        for j in range(n):
+            grid[i][j] = next_grid[i][j]
 
-        for idx, a in enumerate (tmp):
-            grid[start-idx][j] = a
-              
-for coor in (explosion(x,y)):
-    grid[coor[0]][coor[1]] = 0
+            
+r, c = tuple(map(int, input().split()))
+bomb(r - 1, c - 1)
 
-fall(grid)
-
-for a in grid:
-    print(*a)
+for i in range(n):
+    for j in range(n):
+        print(grid[i][j], end=" ")
+    print()
