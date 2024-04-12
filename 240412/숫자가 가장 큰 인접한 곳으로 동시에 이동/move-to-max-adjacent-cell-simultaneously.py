@@ -14,7 +14,7 @@ dy = [0,0,-1,1]
 def in_range(x,y):
     return 0<=x<n and 0<=y<n
 
-def move():
+def move(biz):
     for idx,b in enumerate(biz):
         max_value = 0
         for i in range (4):
@@ -25,12 +25,15 @@ def move():
                     max_value = grid[nx][ny]
                     biz[idx] = (nx,ny)
     dup = [[0]*n for _ in range (n)]
+    tmp = []
     for idx,b in enumerate(biz):
-        if dup[b[0]][b[1]] == 0:
-            dup[b[0]][b[1]] = idx+1
-        else :
-            biz.remove(biz[idx])
-            del biz[dup[b[0]][b[1]]-1]
+        dup[b[0]][b[1]] += 1
+    for i in range (n):
+        for j in range (n) :
+            if (dup[i][j]) == 1:
+                tmp.append((i,j))                
+    return tmp
+
 for _ in range (t):
-    move()
+    biz = move(biz)
 print(len(biz))
