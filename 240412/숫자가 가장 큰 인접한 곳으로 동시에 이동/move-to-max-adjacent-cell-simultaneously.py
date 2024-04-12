@@ -24,16 +24,13 @@ def move():
                 if grid[nx][ny] > max_value:
                     max_value = grid[nx][ny]
                     biz[idx] = (nx,ny)
-    removeDup()
-
-def removeDup():
     dup = [[0]*n for _ in range (n)]
     for idx,b in enumerate(biz):
         if dup[b[0]][b[1]] == 0:
             dup[b[0]][b[1]] = idx+1
         else :
             biz.remove(biz[idx])
-            biz.remove(biz[dup[b[0]][b[1]]])
+            biz.remove(biz[dup[b[0]][b[1]]-1])
 
                 
 for _ in range (t):
