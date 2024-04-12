@@ -30,9 +30,7 @@ def move():
             dup[b[0]][b[1]] = idx+1
         else :
             biz.remove(biz[idx])
-            biz.remove(biz[dup[b[0]][b[1]]-1])
-
-                
+            del biz[dup[b[0]][b[1]]-1]
 for _ in range (t):
     move()
 print(len(biz))
