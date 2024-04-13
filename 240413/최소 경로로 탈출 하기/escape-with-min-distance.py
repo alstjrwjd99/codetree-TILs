@@ -26,4 +26,6 @@ while q:
             q.append((nx,ny))
             visited.add((nx,ny))
             step[nx][ny] = step[x][y] + 1
-print (-1) if step[n-1][m-1] == 0 :print(step[n-1][m-1])
+            
+
+print (-1) if step[n-1][m-1] == 0 else print(step[n-1][m-1])
