@@ -22,7 +22,7 @@ while q:
     for i in range (4):
         nx = x + dx[i]
         ny = y + dy[i]
-        if in_range(nx,ny) and not (nx,ny) in visited:
+        if in_range(nx,ny) and grid[nx][ny] == 1 and not (nx,ny) in visited:
             q.append((nx,ny))
             visited.add((nx,ny))
 print(answer)
