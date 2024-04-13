@@ -14,5 +14,5 @@ for i in range (t):
 
 for idx, a in enumerate(tri):
     print(a,end=' ')
-    if idx%3 ==n-1 :
+    if (idx+1)%(n) == 0 :
         print()
