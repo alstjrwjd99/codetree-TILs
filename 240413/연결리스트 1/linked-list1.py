@@ -15,14 +15,14 @@ def connect(s, e):
 
 # target 뒤에 s를 삽입합니다.
 def insertNext(target, s):
-    connect(target,s)
     connect(s,target.next)
-    
+    connect(target,s)
+
 
 # target 앞에 s를 삽입합니다.
 def insertPrev(target, s):
-    connect(s,target)
     connect(target.prev,s)
+    connect(s,target)
 
 # target의 이전 노드, target, target의 다음 노드의 값을 출력합니다.
 def printNode(target):
