@@ -15,7 +15,10 @@ def inrange(x,y):
 
 def dfs(x,y):
     global answer
-
+    if visited[x][y] == 0:
+        visited[x][y] = 1 
+        answer += 1
+        
     for i,j in zip(dxs,dys):
         nx = x + i
         ny = y + j
