@@ -10,12 +10,10 @@ def in_range (x,y):
     return 0<=x<n and 0<=y<n
 
 visited = set()
-global answer,block
 answer = []
 block = 0
 
 def dfs(x,y,cnt):
-    global answer,block
     if cnt > 3:
         answer.append(cnt)
     for dx,dy in zip (dxs,dys):
