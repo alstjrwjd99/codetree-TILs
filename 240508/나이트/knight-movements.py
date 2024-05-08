@@ -6,6 +6,7 @@ dxs = [-1,-2,-2,-1,1,2,2,1]
 dys = [-2,-1,1,2,2,1,-1,-2]
 
 queue = deque([(r1-1,c1-1,0)])
+visited = set()
 
 def bfs():
     while queue:
@@ -15,8 +16,9 @@ def bfs():
         for dx,dy in zip(dxs,dys):
             nx = x + dx
             ny = y + dy
-            if 0<= nx < n and 0<= ny < n :
+            if 0<= nx < n and 0<= ny < n and (nx,ny) not in visited:
                 queue.append((nx,ny,z+1))
+                visited.add((nx,ny))
     return -1
 
 print(bfs())
